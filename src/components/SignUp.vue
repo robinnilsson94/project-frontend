@@ -4,7 +4,6 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                     <h1>Register an admin user</h1>
-                    <hr>
                     <div class="form-group">
                         <label for="Username">Username</label>
                         <input
@@ -23,7 +22,6 @@
                     </div>
                 </div>
             </div>
-            <hr>
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                     <button
@@ -34,7 +32,6 @@
                 </div>
             </div>
         </form>
-        <hr>
         <h3>{{User.username}} | {{User.password}}</h3>
         </div>
 

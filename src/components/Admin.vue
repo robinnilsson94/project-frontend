@@ -1,18 +1,9 @@
 <template>
     <div id = "admin" v-if="loaded">
         <h2>Admin Settings</h2>
-        <h3>Select the currency you want to edit.</h3>
+        <h3>Select the currencies you want to update.</h3>
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-            <div class="form-group">
-                <label for="rate">Rate:</label>
-                <input
-                        type="Number"
-                        id="rate"
-                        class="form-control"
-                        v-model= "rateForm.rate">
-            </div>
-
-            <label for="fromCurrency">Change rate between: </label>
+            <label for="fromCurrency">1</label>
             <select
                     class="form-control"
                     id="fromCurrency"
@@ -21,8 +12,15 @@
                         v-for="fromCurrency in currencies" :key="fromCurrency"
                 >{{fromCurrency}}</option>
             </select>
-
-            <label for="toCurrency">and: </label>
+            <div class="form-group">
+                <label for="rate">equals</label>
+                <input
+                        type="Number"
+                        id="rate"
+                        class="form-control"
+                        v-model= "rateForm.rate">
+            </div>
+            <label for="toCurrency"></label>
             <select
                     class="form-control"
                     id="toCurrency"
@@ -37,7 +35,7 @@
                     @click.prevent="changeRate">
                 Change Rate
             </button>
-            <h1>{{result}}</h1>
+            <h2 v-if="putSuccess">Rate has been updated!</h2>
         </div>
     </div>
 </template>
@@ -53,8 +51,6 @@
                         this.currencies[i] = data.currencies[i].code;
                     }
                     this.loaded = true;
-                    // eslint-disable-next-line no-console
-                    console.log(this.currencies)
                 })
         },
         data() {
@@ -65,8 +61,8 @@
                     toCurrency: '',
                 },
                 currencies: [],
-                result: '',
-                loaded: false
+                loaded: false,
+                putSuccess: false
             }
         },
         methods: {
@@ -79,12 +75,14 @@
                     .catch((err)=> {})
             },
             changeRate(){
-                axios.post();
+                axios.put("http://localhost:8080/rate", this.rateForm)
+                .then(()=>{
+                    this.putSuccess = true;
+                })
             }
         }
     }
 </script>
 
 <style scoped>
-
 </style>

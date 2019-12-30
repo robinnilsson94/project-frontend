@@ -4,15 +4,15 @@
     <h3>Select the currencies you want to convert an amount from.</h3>
     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
       <div class="form-group">
-        <label for="currencyAmount">Amount:</label>
+        <label for="currencyAmount">Amount</label>
         <input
                 type="Number"
                 id="currencyAmount"
                 class="form-control"
                 v-model= "convertForm.currencyAmount">
-      </div>
 
-      <label for="fromCurrency">Convert from: </label>
+
+      <label for="fromCurrency">From </label>
     <select
             class="form-control"
             id="fromCurrency"
@@ -22,7 +22,7 @@
               >{{fromCurrency}}</option>
     </select>
 
-      <label for="toCurrency">into: </label>
+      <label for="toCurrency">into </label>
       <select
               class="form-control"
               id="toCurrency"
@@ -37,6 +37,7 @@
               @click.prevent="convert">
         Convert
       </button>
+      </div>
         <h1>{{result}}</h1>
       </div>
   </div>
@@ -54,8 +55,6 @@
                         this.currencies[i] = data.currencies[i].code;
                     }
                     this.loaded = true;
-                    // eslint-disable-next-line no-console
-                    console.log(this.currencies)
                 })
         },
       data() {
