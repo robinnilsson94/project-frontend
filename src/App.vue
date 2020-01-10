@@ -1,18 +1,28 @@
 <template>
   <div id="app">
     <ul> <li> <router-link to="/">Home</router-link></li>
-    <li> <router-link to="/signup">SignUp</router-link></li>
-     <li> <router-link to="/admin">Admin</router-link></li></ul>
+    <li v-if="!authenticated"> <router-link to="/signIn">Sign in as Admin</router-link></li>
+     <li> <router-link v-if="authenticated" to="/admin">Settings</router-link></li>
+    <li> <router-link v-if="authenticated" to="/" @click.native="setAuthenticate(false)">Sign out</router-link></li></ul>
     <img alt="Icon" src="./assets/icon.png"   style="width: 10%;
          height: auto;" >
-    <router-view></router-view>
+    <router-view @authenticated="setAuthenticate"></router-view>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'app'
+  name: 'app',
+  data() {
+    return {
+      authenticated: false
+  }},
+  methods: {
+    setAuthenticate(status){
+      this.authenticated = status;
+    }
+  }
 }
 </script>
 
@@ -46,6 +56,10 @@ ul {
   padding: 0;
   overflow: hidden;
   background-color: #333;
+}
+
+.error {
+  color: red;
 }
 
 li {
