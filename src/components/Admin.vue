@@ -51,6 +51,7 @@
                     @click.prevent="changeRate">
                 Change Rate
             </button>
+            <h3>Number of conversions made: {{counter}}</h3>
             <h2 v-if="putSuccess">Rate has been updated!</h2>
         </div>
     </div>
@@ -79,6 +80,10 @@
                     }
                     this.loaded = true;
                 })
+            axios.get( "http://localhost:8080/count")
+                .then(({ data })=> {
+                    this.counter = data.count;
+                })
         },
         data() {
             return {
@@ -90,17 +95,13 @@
                 currencies: [],
                 loaded: false,
                 putSuccess: false,
-                error: false
+                error: false,
+                counter: 0
             }
         },
         methods: {
             count() {
-                axios.get( "http://localhost:8080/count")
-                    .then(({ data })=> {
-                        this.result = data.count;
-                    })
-                    // eslint-disable-next-line no-unused-vars
-                    .catch((err)=> {})
+
             },
             changeRate(){
                 this.$v.rateForm.$touch();

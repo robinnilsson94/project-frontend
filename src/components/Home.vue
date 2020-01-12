@@ -107,6 +107,7 @@
                             this.result = this.convertForm.currencyAmount + " " + this.convertForm.fromCurrency + " equals " +
                                 this.convertForm.currencyAmount * data.rate + " " + this.convertForm.toCurrency;
                         })
+                    axios.put('http://localhost:8080/count');
                 }
 
 
