@@ -100,9 +100,6 @@
             }
         },
         methods: {
-            count() {
-
-            },
             changeRate(){
                 this.$v.rateForm.$touch();
                 if (this.$v.rateForm.$anyError) {
